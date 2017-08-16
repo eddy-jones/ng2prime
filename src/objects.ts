@@ -1,0 +1,95 @@
+export interface CccDataSourceColumn {
+        DataSourceColumnID: string;
+        DataSourceColumnName: string;
+        DataSourceID: string;
+        DataSourceSharedColumnID?: string;
+        Caption: string;
+        AlternativeCaption: string;
+        FieldWidth?: number;
+        OptimiseFieldWidth?: boolean;
+        CanExpandFieldWidth?: boolean;
+        ExpandedFieldWidth?: boolean;
+        TextFieldHeight?: number;
+        TextFieldFormat: string;
+        TextFontColour?: number;
+        TextBackColour?: number;
+        TextFontName: string;
+        TextFontSize?: number;
+        TextIsBold?: boolean;
+        TextIsItalic?: boolean;
+        TextIsUnderline?: boolean;
+        TextAlignID?: number;
+        TextCaseID?: number;
+        LabelFieldHeight?: number;
+        LabelFontColour?: number;
+        LabelBackColour?: number;
+        LabelFontName: string;
+        LabelFontSize?: number;
+        LabelAlignID?: number;
+        LabelOrientationID?: number;
+        LabelIsBold?: boolean;
+        LabelIsItalic?: boolean;
+        LabelIsUnderline?: boolean;
+        DescriptiveText: string;
+        IsPrimaryKey?: boolean;
+        DefaultFieldOrder?: number;
+        ColumnCategoryText: string;
+        IsEncrypted?: boolean;
+        DBIsRequired?: boolean;
+        MaxTextLength?: number;
+        LookupDataSourceName: string;
+        LookupDataSourceColumnName: string;
+        LinkKeyColumnFromThisDataSource: string;
+        LinkLinkedTable: string;
+        LinkKeyColumnInLinkedTable: string;
+        LinkColumnToUseFromLinkedTable: string;
+        DateTimeOptions?: number;
+        EnumName: string;
+        ValidationExpression: string;
+        ColumnExpressionText: string;
+        CodeDataType: string;
+        IsAutonumber?: boolean;
+        ColumnType?: number;
+        UnderlyingDataSourceColumnID?: string;
+        ShouldTruncateText?: boolean;
+        IsVisible: boolean;
+        ShouldShowByDefault: boolean;
+        IsDescriptionColumn: boolean;
+        DefaultValue: string;
+        IsHiddenField: boolean;
+        LinkDatabaseName: string;
+        SupportsSpellChecking: boolean;
+        IsReadOnly: boolean;
+        UICodeDataType: string;
+        GenerateCode?: boolean;
+        IsCompressed: boolean;
+        IsLinkLinkedTableInnerJoin: boolean;
+        ColumnBulkUpdateAvailability?: number;
+        AllowPermissions: number;
+        PermissionLookupField_Database: string;
+        PermissionLookupField_Column: string;
+        PermissionLookupField_Table: string;
+        LoadColumnWhenEditingData?: number;
+        LookupType?: number;
+        RangeMinValue: string;
+        RangeMaxValue: string;
+        ValidationRegex: string;
+        ValidationRegexMessage: string;
+        LookupDatabaseLogicalName: string;
+        UseOfflineOrOnlineData?: number;
+        ValidationRegexEnforcementLevel: string;
+        ValidationRegexRuleType: string;
+}
+
+export interface CCCDataSource {
+        DataSourceID: string;
+        DataSourceName: string;
+        Caption: string;
+}
+
+export interface Room {
+        RoomID?: number;
+        RoomNo?: string;
+        Description?: string;
+        Enabled?: boolean;
+}

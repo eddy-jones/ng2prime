@@ -1,0 +1,34 @@
+h1 {
+    font-size: 1.2em;
+    color: #999;
+    margin-bottom: 0;
+  }
+  h2 {
+    font-size: 2em;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  nav a {
+    padding: 5px 10px;
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+    background-color: darkslategray;
+    border-radius: 4px;
+    color:white;
+    :visited, :link {
+      color: white;
+    }
+    :hover {
+      color: white;
+      background-color: black;
+    }
+    .active {
+      color: white;
+    :hover {
+      color: white;
+    }
+    }
+  }
+  
+  

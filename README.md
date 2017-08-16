@@ -12,6 +12,10 @@ Added [PrimeNG](https://www.primefaces.org/primeng/#/)
 
 * `npm install primeng`
 
+Added [Font Awesome](http://fontawesome.io/)
+
+* `npm install font-awesome`
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
