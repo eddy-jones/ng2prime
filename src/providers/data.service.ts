@@ -43,7 +43,7 @@ export class DataService {
     }
 
     getRoomsMedium(): Promise<Room[]> {
-        return this.http.get('http://35.176.21.120:8181/prosolution/Rooms')
+        return this.http.get('http://35.176.21.120:8181/prosolution/odata/Rooms?$top=20')
             .toPromise()
             .then(res => <Room[]>res.json().value);
     }

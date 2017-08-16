@@ -24,9 +24,9 @@ export class AppComponent implements OnInit {
         routerLink: ['/dashboard']
       },
       {
-        label: 'Staff',
+        label: 'Rooms',
         icon: 'fa-users',
-        routerLink: ['/staff']
+        routerLink: ['/rooms']
       },
       {
         label: 'Students',

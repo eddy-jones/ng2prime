@@ -10,7 +10,7 @@ import { AppRoutingModule } from './modules/app-routing.module';
 // components
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { StaffComponent } from './components/staff/staff.component';
+import { RoomComponent } from './components/room/room.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { InputTextModule,
   DataTableModule,
@@ -29,14 +29,14 @@ import { NotificationsService } from '../providers/notifications.service';
 import { DataService } from '../providers/data.service';
 
 import 'rxjs/add/operator/map';
-
+import 'rxjs/add/operator/toPromise';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotificationsComponent,
     DashboardComponent,
-    StaffComponent
+    RoomComponent
   ],
   imports: [
     BrowserModule,

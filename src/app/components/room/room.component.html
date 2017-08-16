@@ -1,0 +1,7 @@
+<p>
+  room works!
+</p>
+<h3>Dynamic Columns</h3>
+<p-dataTable [value]="rooms">
+    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"></p-column>
+</p-dataTable>
