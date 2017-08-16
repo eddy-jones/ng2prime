@@ -4,13 +4,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 
 # Step By Step
-⋅⋅* `ng2 new <foldername> --style=scss`
-⋅⋅* `cd <foldername>`
-⋅⋅* `npm install`
+* `ng2 new <foldername> --style=scss`
+* `cd <foldername>`
+* `npm install`
 
 Added [PrimeNG](https://www.primefaces.org/primeng/#/)
 
-⋅⋅* `npm install primeng`
+* `npm install primeng`
 
 ## Development server
 
