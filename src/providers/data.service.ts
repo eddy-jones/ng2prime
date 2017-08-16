@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Rx';
 import { CccDataSourceColumn, CCCDataSource, Room } from '../objects';
 import { FilterMetadata } from 'primeng/primeng';
 
+
+// some test http calls to return data in JSON format from the web service
 @Injectable()
 export class DataService {
 
@@ -17,7 +19,7 @@ export class DataService {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        return this.http.get('http://localhost/prosolutionwebapi/odata/CCCDataSource?$select=DataSourceID,DataSourceName', { headers: headers })
+        return this.http.get('http://35.176.21.120:8181/prosolution/odata/CCCDataSource?$select=DataSourceID,DataSourceName', { headers: headers })
             .toPromise()
             .then(res => <CCCDataSource[]>res.json().value);
     }
@@ -26,7 +28,7 @@ export class DataService {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        return this.http.get("http://localhost/prosolutionwebapi/odata/CCCDataSource?$filter=DataSourceID eq guid'" + ds + "'", { headers: headers })
+        return this.http.get("http://35.176.21.120:8181/prosolution/odata/CCCDataSource?$filter=DataSourceID eq guid'" + ds + "'", { headers: headers })
             .toPromise()
             .then(res => <CCCDataSource>res.json().value);
     }
@@ -35,13 +37,13 @@ export class DataService {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        return this.http.get("http://localhost/prosolutionwebapi/odata/CCCDataSourceColumn?$filter=DataSourceID eq guid'" + ds + "'", { headers: headers })
+        return this.http.get("http://35.176.21.120:8181/prosolution/odata/CCCDataSourceColumn?$filter=DataSourceID eq guid'" + ds + "'", { headers: headers })
             .toPromise()
             .then(res => <CccDataSourceColumn[]>res.json().value);
     }
 
     getRoomsMedium(): Promise<Room[]> {
-        return this.http.get('http://localhost/prosolutionwebapi/odata/Rooms')
+        return this.http.get('http://35.176.21.120:8181/prosolution/Rooms')
             .toPromise()
             .then(res => <Room[]>res.json().value);
     }
@@ -51,7 +53,7 @@ export class DataService {
     }
 
     getRowCount(datasource: string): Promise<Number> {
-        const query: string = 'http://localhost/prosolutionwebapi/odata/' + datasource + '?$inlinecount=allpages&$skip=0&$top=0';
+        const query: string = 'http://35.176.21.120:8181/prosolution/odata/' + datasource + '?$inlinecount=allpages&$skip=0&$top=0';
         return this.http.get(query)
             .toPromise()
             .then(res => res.json()['odata.count'])
@@ -59,7 +61,7 @@ export class DataService {
     }
     loadData(dataSource: string, top: number, skip: number, filter: FilterMetadata, sortField: string, sortDir: string, cols: any[]): Promise<Response> {
         // base query
-        let query: string = 'http://localhost/prosolutionwebapi/odata/' + dataSource + '/?$inlinecount=allpages&$top=' + top + '&$skip=' + skip + '&$orderby=' + sortField + ' ' + sortDir;
+        let query: string = 'http://35.176.21.120:8181/prosolution/odata/' + dataSource + '/?$inlinecount=allpages&$top=' + top + '&$skip=' + skip + '&$orderby=' + sortField + ' ' + sortDir;
 
         // add filters
         if (Object.keys(filter).length > 0) {

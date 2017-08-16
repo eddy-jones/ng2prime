@@ -26,7 +26,7 @@ import { InputTextModule,
  // services
 import { ConfirmationService } from 'primeng/primeng';
 import { NotificationsService } from '../providers/notifications.service';
-
+import { DataService } from '../providers/data.service';
 
 import 'rxjs/add/operator/map';
 
@@ -54,7 +54,7 @@ import 'rxjs/add/operator/map';
     GrowlModule,
     ContextMenuModule
   ],
-  providers: [ConfirmationService, NotificationsService],
+  providers: [ConfirmationService, NotificationsService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
