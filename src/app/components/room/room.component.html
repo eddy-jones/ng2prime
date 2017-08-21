@@ -1,7 +1,16 @@
-<p>
-  room works!
-</p>
-<h3>Dynamic Columns</h3>
-<p-dataTable [value]="rooms">
-    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"></p-column>
-</p-dataTable>
+
+<button (click)="loadData('Staff')">Load Staff</button>
+<button (click)="loadData('Room')">Load Rooms</button>
+<app-ccc-grid [dataSource]="DS"></app-ccc-grid>
+
+<p-dialog #pd
+[header]="selectedRoom ? selectedRoom.Description : 'Room Details'" 
+[(visible)]="dialogVisible" 
+[responsive]="true" 
+showEffect="fade" 
+[modal]="true" 
+width="800"
+(onShow)="dialogOpened()" 
+(onHide)="dialogClosed()">
+    <app-room-details [room]="selectedRoom" [dialog]="pd"></app-room-details>
+</p-dialog>

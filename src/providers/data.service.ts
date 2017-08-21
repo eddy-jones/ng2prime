@@ -33,6 +33,15 @@ export class DataService {
             .then(res => <CCCDataSource>res.json().value);
     }
 
+    public getDataSourceFromName(dsName: string): Promise<CCCDataSource> {
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.http.get("http://35.176.21.120:8181/prosolution/odata/CCCDataSource?$filter=DataSourceName eq '" + dsName + "'", { headers: headers })
+            .toPromise()
+            .then(res => res.json().value);
+    }
+
     public loadDataSourceColumns(ds: string): Promise<CccDataSourceColumn[]> {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -59,9 +68,13 @@ export class DataService {
             .then(res => res.json()['odata.count'])
             .then(data => Number(data));
     }
-    loadData(dataSource: string, top: number, skip: number, filter: FilterMetadata, sortField: string, sortDir: string, cols: any[]): Promise<Response> {
+    loadData(dataSource: string, top: number, skip: number, filter: FilterMetadata, sortField: string, sortDir: string, cols: any[]): Promise<any> {
+        // HACK: should pluralise datasource
+        if (['Room', 'Student'].indexOf(dataSource) >= 0) {
+            dataSource += 's';
+        }
         // base query
-        let query: string = 'http://35.176.21.120:8181/prosolution/odata/' + dataSource + '/?$inlinecount=allpages&$top=' + top + '&$skip=' + skip + '&$orderby=' + sortField + ' ' + sortDir;
+        let query: string = 'http://35.176.21.120:8181/prosolution/odata/' + dataSource + '?$inlinecount=allpages&$top=' + top + '&$skip=' + skip + '&$orderby=' + sortField + ' ' + sortDir;
 
         // add filters
         if (Object.keys(filter).length > 0) {
@@ -79,7 +92,7 @@ export class DataService {
         }
         return this.http.get(query)
             .toPromise()
-            .then(res => res);
+            .then(res => res.json().value);
     }
 
 }

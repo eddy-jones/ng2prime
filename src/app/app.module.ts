@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 // custom modules
 import { AppRoutingModule } from './modules/app-routing.module';
@@ -22,6 +23,7 @@ import { InputTextModule,
   GrowlModule,
   ContextMenuModule
  } from 'primeng/primeng';
+ import { MultiSelect, Dropdown } from 'primeng/primeng';
 
  // services
 import { ConfirmationService } from 'primeng/primeng';
@@ -30,13 +32,18 @@ import { DataService } from '../providers/data.service';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-
+import { RoomDetailsComponent } from './components/room/room-details/room-details.component';
+import { GridComponent } from './components/grid/grid.component';
 @NgModule({
   declarations: [
     AppComponent,
     NotificationsComponent,
     DashboardComponent,
-    RoomComponent
+    RoomComponent,
+    MultiSelect,
+    Dropdown,
+    RoomDetailsComponent,
+    GridComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +51,7 @@ import 'rxjs/add/operator/toPromise';
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    NgbModule.forRoot(),
     InputTextModule,
     DataTableModule,
     ButtonModule,

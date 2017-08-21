@@ -22,7 +22,8 @@
         "styles.scss",
         "../node_modules/primeng/resources/themes/kasper/theme.css",
         "../node_modules/primeng/resources/primeng.css",
-        "../node_modules/font-awesome/css/font-awesome.min.css"
+        "../node_modules/font-awesome/css/font-awesome.min.css",
+        "../node_modules/bootstrap-css-only/css/bootstrap.min.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

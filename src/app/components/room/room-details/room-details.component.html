@@ -1,0 +1,38 @@
+
+<div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="room" appendTo="body">
+    <form #roomForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+      <label for="RoomID" >RoomID</label>
+        {{room.RoomID}}
+    </div>
+    <div class="form-group">
+        <label for="RoomNo" >RoomNo</label>
+       <input class="form-control" type="text" [(ngModel)]="room.RoomNo" id="RoomNo" name="RoomNo" #RoomNo="ngModel" required/>
+       <div [hidden]="RoomNo.valid || RoomNo.pristine"
+       class="alert alert-danger">
+    RoomNo is required
+  </div>
+    </div>
+    <div class="form-group">
+        <label for="Description" >Description</label>
+        <input class="form-control" type="text" [(ngModel)]="room.Description" name="Description" #Description="ngModel"/>
+    </div>
+    <div class="form-group">
+        <label for="NoDesks" >Number of Desks</label>
+        <input class="form-control" type="text" [(ngModel)]="room.NoDesks" name="NoDesks" #NoDesks="ngModel" maxlength="3"/>
+    </div>
+    <div class="form-group">
+      <label for="RoomTypeID" >Room Type</label>
+      <select class="form-control" id="RoomTypeID" required [(ngModel)]="room.RoomTypeID" name="RoomTypeID" #RoomTypeID="ngModel">
+          <option *ngFor="let rt of roomTypes" [value]="rt.value">{{rt.label}}</option>
+        </select>
+    </div>
+    <div class="form-group pull-right" >
+          <button icon="fa-floppy-o" pButton class="ui-button-success" label="OK" [disabled]="!roomForm.form.valid" (click)="save($event)"></button>
+          <button icon="fa-ban" pButton type="button" class="ui-button-danger" label="Cancel" (click)="hide($event);"></button>
+    </div>
+
+  </form>
+
+
+</div>

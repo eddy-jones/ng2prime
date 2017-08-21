@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../providers/data.service';
-import { Room } from '../../../objects';
+import { NotificationsService } from '../../../providers/notifications.service';
+import { Room, CCCDataSource } from '../../../objects';
+import { SelectItem } from 'primeng/primeng';
+
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
@@ -8,20 +11,26 @@ import { Room } from '../../../objects';
 })
 export class RoomComponent implements OnInit {
 
-  cols: any[] = [];
-  rooms: Room[] = [];
-  constructor(private dataService: DataService) { }
+  dialogVisible: boolean;
+  DS: CCCDataSource;
+  constructor(private dataService: DataService, private notificationsService: NotificationsService) { }
 
   ngOnInit() {
-    this.cols = [
-      {field: 'RoomID', header: 'RoomID'},
-      {field: 'RoomNo', header: 'RoomNo'},
-      {field: 'Description', header: 'Description'}
-
-  ];
-  this.dataService.getRoomsMedium().then((rooms) => {
-    this.rooms = rooms;
-  });
+    this.loadData('Room');
   }
 
+  loadData(dataSource: string) {
+    this.dataService.getDataSourceFromName(dataSource) // Get DataSourceID
+    .then((res) => {
+      this.DS = res[0]; // this triggers the grid load
+    });
+  }
+
+  dialogOpened() {
+    this.notificationsService.notify('info', 'Dialog Opened', 'Room Details Form Opened');
+  }
+
+  dialogClosed() {
+    this.notificationsService.notify('info', 'Dialog Closed', 'Room Details Form Closed');
+  }
 }
