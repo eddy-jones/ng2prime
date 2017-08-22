@@ -21,11 +21,14 @@ export class RoomComponent implements OnInit {
 
   loadData(dataSource: string) {
     this.dataService.getDataSourceFromName(dataSource) // Get DataSourceID
-    .then((res) => {
-      this.DS = res[0]; // this triggers the grid load
-    });
+      .then((res) => {
+        this.DS = res[0]; // this triggers the grid load
+      });
   }
 
+  onRowSelected($event: Event) {
+    this.dialogVisible = true;
+  }
   dialogOpened() {
     this.notificationsService.notify('info', 'Dialog Opened', 'Room Details Form Opened');
   }

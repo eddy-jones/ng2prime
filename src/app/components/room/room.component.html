@@ -1,16 +1,11 @@
 
-<button (click)="loadData('Staff')">Load Staff</button>
-<button (click)="loadData('Room')">Load Rooms</button>
-<app-ccc-grid [dataSource]="DS"></app-ccc-grid>
+<button pButton type="button"  (click)="loadData('Staff')" label="Load Staff"></button>
+<button pButton type="button"  (click)="loadData('Room')" label="Load Rooms"></button>
+<app-ccc-grid [dataSource]="DS" #grid (onRowSelected)="onRowSelected(event)"></app-ccc-grid>
 
-<p-dialog #pd
-[header]="selectedRoom ? selectedRoom.Description : 'Room Details'" 
-[(visible)]="dialogVisible" 
-[responsive]="true" 
-showEffect="fade" 
-[modal]="true" 
-width="800"
-(onShow)="dialogOpened()" 
-(onHide)="dialogClosed()">
-    <app-room-details [room]="selectedRoom" [dialog]="pd"></app-room-details>
+<p-dialog #pd 
+[header]="grid.selectedItem ? grid.selectedItem.Description : 'Room Details'" [(visible)]="dialogVisible" [responsive]="true" [modal]="true" 
+showEffect="fade" width="800"
+(onShow)="dialogOpened()" (onHide)="dialogClosed()">
+    <app-room-details [room]="grid.selectedItem" [dialog]="pd" ></app-room-details>
 </p-dialog>

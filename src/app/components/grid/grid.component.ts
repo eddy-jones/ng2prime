@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { CccDataSourceColumn, CCCDataSource } from '../../../objects';
 import { DataService } from '../../../providers/data.service';
 import { NotificationsService } from '../../../providers/notifications.service';
@@ -11,11 +11,11 @@ import { SelectItem, FilterMetadata } from 'primeng/primeng';
 })
 export class GridComponent implements OnInit, OnChanges {
     @Input() dataSource: CCCDataSource;
+    @Output() selectedItem: any;
+    @Output() onRowSelected = new EventEmitter<any>();
     numberOfRows: Number = 20;
     showPaginator: Boolean = true;
     canResizeColumns: Boolean = true;
-    selectionMode: SelectionMode = SelectionMode.single;
-    selectedItem: any;
     rowPrimaryKey = '';
     columnOptions: SelectItem[] = [];
     allCols: any[] = [];
@@ -29,6 +29,7 @@ export class GridComponent implements OnInit, OnChanges {
 
     }
     ngOnChanges() {
+        this.rowPrimaryKey = '';
         if (this.dataSource) {
             this.dataService.loadDataSourceColumns(this.dataSource.DataSourceID) // Get DataSource Columns
                 .then((cols) => {
@@ -45,12 +46,13 @@ export class GridComponent implements OnInit, OnChanges {
                         }
                         if (col.IsPrimaryKey && this.rowPrimaryKey === '') {
                             this.rowPrimaryKey = col.DataSourceColumnName;
+                            console.log('Set primary key to: ' + col.DataSourceColumnName);
                         }
                     });
                 })
                 .then(() => {
                     // load grid data
-                    this.dataService.loadData(this.dataSource.DataSourceName, 20, 0, {}, this.rowPrimaryKey, 'asc', [])
+                    this.dataService.loadData(this.dataSource.DataSourceName, 50, 0, {}, this.rowPrimaryKey, 'asc', [])
                         .then((res) => {
                             this.data = res;
                         });
@@ -60,7 +62,7 @@ export class GridComponent implements OnInit, OnChanges {
 
     onRowSelect(event) {
         this.selectedItem = event.data;
-        // this.dialogVisible = true;
+        this.onRowSelected.emit(event);
     }
 
     colsChanged($event) {
@@ -72,9 +74,4 @@ export class GridComponent implements OnInit, OnChanges {
     }
 
 
-}
-
-export enum SelectionMode {
-    single,
-    multiple
 }

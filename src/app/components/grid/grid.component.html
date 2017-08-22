@@ -1,7 +1,7 @@
 <p-dataTable 
     [value]="data" 
     [rows]="numberOfRows" [paginator]="showPaginator" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]" resizableColumns="canResizeColumns" [globalFilter]="gb" #dt
-selectionMode="selectionMode" [(selection)]="selectedItem" dataKey="rowPrimaryKey" (onRowSelect)="onRowSelect($event)"
+selectionMode="single" [(selection)]="selectedItem" [dataKey]="rowPrimaryKey" (onRowSelect)="onRowSelect($event)"
 scrollable="true"  scrollWidth="100%" [style]="{'margin-top':'30px'}">
 <p-header>
         <div style="text-align:left">
@@ -11,5 +11,5 @@ scrollable="true"  scrollWidth="100%" [style]="{'margin-top':'30px'}">
     <p-column *ngFor="let col of visibleCols" [style]="{'width':'200px'}" [field]="col.field" [header]="col.header" [sortable]="col.canSort" [filter]="col.canFilter" [filterMatchMode]="col.filterMatchMode">
       
     </p-column>
-    <p-footer><div style="text-align: left">Selected Item: {{selectedItemDescription ? selectedItemDescription : ''}}</div></p-footer>
+    <p-footer><div style="text-align: left">Selected Item: {{selectedItem?.Description}}</div></p-footer>
 </p-dataTable>
