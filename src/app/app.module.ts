@@ -21,7 +21,8 @@ import { InputTextModule,
   MenubarModule,
   ConfirmDialogModule,
   GrowlModule,
-  ContextMenuModule
+  ContextMenuModule,
+  LightboxModule
  } from 'primeng/primeng';
  import { MultiSelect, Dropdown } from 'primeng/primeng';
 
@@ -60,7 +61,8 @@ import { GridComponent } from './components/grid/grid.component';
     MenubarModule,
     ConfirmDialogModule,
     GrowlModule,
-    ContextMenuModule
+    ContextMenuModule,
+    LightboxModule
   ],
   providers: [ConfirmationService, NotificationsService, DataService],
   bootstrap: [AppComponent]
