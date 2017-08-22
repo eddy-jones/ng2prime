@@ -21,7 +21,7 @@ export class GridComponent implements OnInit, OnChanges {
     allCols: any[] = [];
     visibleCols: any[] = [];
     data: any[] = [];
-
+    loading: Boolean = false;
     constructor(private dataService: DataService, private notificationsService: NotificationsService) {
 
     }
@@ -31,6 +31,7 @@ export class GridComponent implements OnInit, OnChanges {
     ngOnChanges() {
         this.rowPrimaryKey = '';
         if (this.dataSource) {
+            this.loading = true;
             this.dataService.loadDataSourceColumns(this.dataSource.DataSourceID) // Get DataSource Columns
                 .then((cols) => {
                     this.allCols = [];
@@ -55,6 +56,11 @@ export class GridComponent implements OnInit, OnChanges {
                     this.dataService.loadData(this.dataSource.DataSourceName, 50, 0, {}, this.rowPrimaryKey, 'asc', [])
                         .then((res) => {
                             this.data = res;
+                            this.loading = false;
+                        })
+                        .catch((ex) => {
+                            alert(ex);
+                            this.loading = false;
                         });
                 });
         }
